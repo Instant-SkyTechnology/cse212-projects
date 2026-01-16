@@ -31,23 +31,32 @@ public class TakingTurnsQueue
     /// person has an infinite number of turns.  An error exception is thrown 
     /// if the queue is empty.
     /// </summary>
+
+    /// Defect(s) Found: 
+    /// - Finite turns = 1 were not re-added correctly.
+    /// - Infinite turns (≤0) were not handled correctly; they were not re-added.
+
     public Person GetNextPerson()
     {
         if (_people.IsEmpty())
-        {
             throw new InvalidOperationException("No one in the queue.");
+
+        Person person = _people.Dequeue();
+
+        // Infinite turns
+        if (person.Turns <= 0)
+        {
+            _people.Enqueue(person);
         }
+        // Finite turns
         else
         {
-            Person person = _people.Dequeue();
-            if (person.Turns > 1)
-            {
-                person.Turns -= 1;
+            person.Turns -= 1;
+            if (person.Turns > 0)
                 _people.Enqueue(person);
-            }
-
-            return person;
         }
+
+        return person;
     }
 
     public override string ToString()

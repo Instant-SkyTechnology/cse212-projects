@@ -18,7 +18,10 @@ public class TakingTurnsQueueTests
         var tim = new Person("Tim", 5);
         var sue = new Person("Sue", 3);
 
-        Person[] expectedResult = [bob, tim, sue, bob, tim, sue, tim, sue, tim, tim];
+        // Person[] expectedResult = [tim, sue, tim, sue, tim, sue, tim, tim, tim, tim]; 
+        // wrong C# syntax the below is the correct one.
+        Person[] expectedResult = new Person[] { bob, tim, sue, bob, tim, sue, tim, sue, tim, tim };
+
 
         var players = new TakingTurnsQueue();
         players.AddPerson(bob.Name, bob.Turns);
