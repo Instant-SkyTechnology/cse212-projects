@@ -6,11 +6,21 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 public class PriorityQueueTests
 {
     [TestMethod]
-    // Scenario: Create a queue with the following people and turns: Bob (2), Tim (5), Sue (3) and
-    // run until the queue is empty
-    // Expected Result: Alice, Bob, Charlie, etc.
-    // Defect(s) Found: 
-    // - PersonQueue.Enqueue was inserting at the front instead of the back, breaking FIFO order.
+    // Test Case 1
+    // Scenario:
+    // Create a priority queue and enqueue the following people with priorities:
+    // Alice (5), Bob (10), Charlie (7).
+    // Then dequeue until the queue is empty.
+    //
+    // Expected Result:
+    // Items should be dequeued in priority order (highest priority first):
+    // Bob, Charlie, Alice.
+    //
+    // Test Result:
+    // Passed – items were dequeued in the correct priority order.
+    //
+    // Defect(s) Found:
+    // None.
 
     public void TestPriorityQueue_1()
     {
@@ -27,10 +37,21 @@ public class PriorityQueueTests
     }
 
     [TestMethod]
-    // Scenario: Create a queue with the following people and turns: Bob (2), Tim (5), Sue (3)
-    // After running 5 times, add George with 3 turns.  Run until the queue is empty.
-    // Expected Result: Alice, Bob, Charlie, etc.
-    // Defect(s) Found: None, passes with proper FIFO behavior
+    // Test Case 2
+    // Scenario:
+    // Create a priority queue and enqueue the following people with the same priority:
+    // Alice (1), Bob (1), Charlie (1).
+    // Dequeue all items.
+    //
+    // Expected Result:
+    // Since all priorities are the same, items should be dequeued in FIFO order:
+    // Alice, Bob, Charlie.
+    //
+    // Test Result:
+    // Passed – FIFO order was preserved for equal priorities.
+    //
+    // Defect(s) Found:
+    // None.
 
     public void TestPriorityQueue_2()
     {
