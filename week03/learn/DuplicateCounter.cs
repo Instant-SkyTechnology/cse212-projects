@@ -24,7 +24,38 @@
 
     private static int CountDuplicates(int[] data)
     {
-        // Add code here.
-        return 0;
+        int duplicates = 0;
+
+        for (int i = 0; i < data.Length; i++)
+        {
+            bool alreadyChecked = false;
+
+            // Check if this value was already processed
+            for (int j = 0; j < i; j++)
+            {
+                if (data[i] == data[j])
+                {
+                    alreadyChecked = true;
+                    break;
+                }
+            }
+
+            if (alreadyChecked)
+                continue;
+
+            // Count occurrences
+            int count = 0;
+            for (int j = 0; j < data.Length; j++)
+            {
+                if (data[i] == data[j])
+                    count++;
+            }
+
+            if (count > 1)
+                duplicates++;
+        }
+
+        return duplicates;
     }
+
 }
